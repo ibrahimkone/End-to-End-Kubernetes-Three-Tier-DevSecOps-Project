@@ -1,0 +1,44 @@
+//Accessing One Amazon ECR Repository
+
+//In this example, you want to grant a user in your AWS account access to one of your Amazon ECR repositories, my-repo. You also want to allow the user to push, pull, and list images.
+
+
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Sid":"ListImagesInRepository",
+         "Effect":"Allow",
+         "Action":[
+            "ecr:ListImages"
+         ],
+         "Resource":"arn:aws:ecr:us-east-1:123456789012:repository/my-repo"
+      },
+      {
+         "Sid":"GetAuthorizationToken",
+         "Effect":"Allow",
+         "Action":[
+            "ecr:GetAuthorizationToken"
+         ],
+         "Resource":"*"
+      },
+      {
+         "Sid":"ManageRepositoryContents",
+         "Effect":"Allow",
+         "Action":[
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:DescribeRepositories",
+                "ecr:ListImages",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:PutImage"
+         ],
+         "Resource":"arn:aws:ecr:us-east-1:123456789012:repository/my-repo"
+      }
+   ]
+}
